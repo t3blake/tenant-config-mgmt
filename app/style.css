@@ -1,0 +1,65 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.tenant-card {
+    min-height: 280px;
+    transition: border-color 0.2s ease;
+}
+
+.tenant-card .card-header {
+    font-weight: 600;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+#compare-section {
+    min-height: 100px;
+}
+
+.compare-type-hdr:hover,
+.compare-res-row:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.compare-res-detail code {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.error-banner {
+    font-size: 0.9rem;
+}
+
+/* Setup guide step indicators */
+.setup-step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-right: 10px;
+    margin-top: 1px;
+}
+
+.setup-step-num.step-active {
+    background-color: var(--bs-primary);
+    color: white;
+}
+
+.setup-step-num.step-done {
+    background-color: var(--bs-success);
+    color: white;
+}
+
+.setup-step-num.step-pending {
+    background-color: var(--bs-secondary-bg);
+    color: var(--bs-secondary-color);
+}

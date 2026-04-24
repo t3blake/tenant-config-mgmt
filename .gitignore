@@ -1,0 +1,25 @@
+# PowerShell
+*.ps1xml
+
+# Module output
+output/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment / secrets — never commit
+.env
+.env.*
+*.pem
+*.pfx
+
+# Local dev scripts (personal)
+start-*.ps1
