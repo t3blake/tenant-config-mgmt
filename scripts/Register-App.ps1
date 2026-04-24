@@ -32,13 +32,16 @@ $redirectUris = @(
     "http://localhost:5500",
     "http://localhost:5500/app/",
     "http://localhost:5500/app/index.html",
+    "http://localhost:8080/",
     "http://127.0.0.1:5500",
     "http://127.0.0.1:5500/app/",
-    "http://127.0.0.1:5500/app/index.html"
+    "http://127.0.0.1:5500/app/index.html",
+    "http://127.0.0.1:8080/",
+    "https://t3blake.github.io/tenant-config-mgmt/"
 )
-if ($GitHubPagesUrl) {
+if ($GitHubPagesUrl -and $GitHubPagesUrl -notin $redirectUris) {
     $redirectUris += $GitHubPagesUrl
-    Write-Host "Including GitHub Pages redirect: $GitHubPagesUrl" -ForegroundColor Green
+    Write-Host "Including custom GitHub Pages redirect: $GitHubPagesUrl" -ForegroundColor Green
 }
 
 # --- Well-known Graph API permission IDs ---
