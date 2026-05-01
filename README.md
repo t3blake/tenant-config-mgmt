@@ -1,37 +1,44 @@
-# Tenant Config Mgmt
+# Tenant Config Compare
 
-Promote Microsoft 365 tenant configuration from dev to prod using the
-[Tenant Configuration Management (TCM) APIs](https://learn.microsoft.com/en-us/graph/unified-tenant-configuration-management-concept-overview)
-in Microsoft Graph, orchestrated by GitHub Actions.
+**[Open the app →](https://t3blake.github.io/tenant-config-mgmt/)**
 
-> **Status:** Design phase — see [DESIGN.md](DESIGN.md) for the full design
-> document.
+A zero-backend browser app that compares Microsoft 365 tenant configurations side-by-side using the [Tenant Configuration Management (TCM) APIs](https://learn.microsoft.com/en-us/graph/unified-tenant-configuration-management-concept-overview) in Microsoft Graph (v1.0 GA).
 
-## What this does
+All data stays in your browser — no server, no secrets, no telemetry.
 
-1. **Export** — Snapshot dev tenant config as JSON via TCM APIs
-2. **Compare** — Diff against the blessed config in this repo
-3. **Deploy** — Apply approved changes to prod via Microsoft Graph
-4. **Monitor** — Detect drift in prod using TCM baselines + monitors
+## What it does
 
-## v1 Scope (all 6 GA workloads)
+1. **Sign in** to two Entra ID tenants (source + destination)
+2. **Snapshot** workload configurations via TCM APIs
+3. **Compare** snapshots with a property-level diff view
 
-- Microsoft Entra (Conditional Access, auth methods, groups, cross-tenant)
-- Microsoft Intune (device config, compliance policies)
-- Microsoft Exchange Online (transport rules, connectors, mailbox policies)
-- Microsoft Teams (meeting, messaging, calling, federation policies)
-- Microsoft Defender / Purview (DLP, retention, eDiscovery, sensitivity labels)
+## Supported workloads
 
-## Prerequisites
+| Workload | Resource types |
+|---|---|
+| Entra ID | 36 (Conditional Access, auth methods, groups, cross-tenant access) |
+| Exchange Online | 61 (transport rules, connectors, mailbox policies) |
+| Teams | 51 (meeting, messaging, calling, federation policies) |
+| Intune | 41 (device config, compliance, app management) |
+| Security & Compliance | 23 (DLP, retention, sensitivity labels) |
 
-- PowerShell 7+
-- Two Microsoft 365 tenants (dev + prod)
-- App registrations with federated credentials (see DESIGN.md § 4)
-- TCM service principal + M365 Admin Services SP provisioned in both tenants
+## Getting started
 
-## Quick Start
+The app walks you through setup on first visit. In short:
 
-> Setup instructions will be added after Sprint 0 spike.
+1. **Register an Entra ID app** — multi-tenant SPA with `ConfigurationMonitoring.ReadWrite.All` (delegated)
+2. **Enter your Client ID** in the app
+3. **Provision TCM** in each tenant by running the setup script (`scripts/Setup-TcmPermissions.ps1`)
+
+See [DESIGN.md](DESIGN.md) for the full design document.
+
+## Local development
+
+```bash
+npx serve app -l 8080
+```
+
+Then open http://localhost:8080/
 
 ## License
 
